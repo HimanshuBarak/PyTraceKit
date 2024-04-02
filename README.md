@@ -1,8 +1,8 @@
 # PyTraceKit
 
- **PyTraceKit**, is a low code tool designed to simplify the integration of distributed tracing into Python microservices through the power of OpenTelemetry. This package is your gateway to enhanced application observability with a low-code, straightforward approach, enriching your logging with trace IDs and allowing detailed tracing with minimal setup.
+ **PyTraceKit**, is a low code solution designed to simplify the integration of distributed tracing into Python microservices through the power of OpenTelemetry. This package provides straightforward approach to enrich your logging with trace IDs and allowing detailed tracing with minimal setup.
 
- Currently along with FASTAPI , Falcon , Flask it also has support for redis and mongodb. Soon this will be extended to postgre and some popular message queues as well.
+ The package comes with inbuilt support for Falcon, FastAPI , Flask 
 
 ## Key Features
 
@@ -22,7 +22,7 @@ pip install pytracekit
 
 ## Getting Started
 
-Setup the environment variables
+Setup the environment variables (These environment varaibles are mandatory)
 
 ```bash
 export TRACE_SERVICE_NAME=your service name
@@ -59,6 +59,17 @@ app = falcon.App()  # Now define your Falcon app
 
 PyTraceKit allows you to add tracing to specific functions using the @instrument_with_tracing decorator. You can specify a custom operation name and additional span attributes for detailed tracing:
 
+#### Simple Function Level Tracing
+```python
+from pytracekit import instrument_with_tracing
+
+@instrument_with_tracing()
+def process_data():
+    # Your function logic here
+
+```
+
+#### Function level tracing with custom operation name and custom span attributes
 ```python
 
 from pytracekit import instrument_with_tracing
@@ -67,18 +78,29 @@ from pytracekit import instrument_with_tracing
 def process_data():
     # Your function logic here
 
-
 ```
 
 ### Setup Enhanced Logging
 
 To take advantage of PyTraceKit's enhanced logging capabilities, use the get_logger function. This allows you to create a logger that includes trace IDs in log messages, making it easier to correlate logs with traces:
 
+#### Standard Logger
+
+```python
+   from pytracekit import get_logger
+
+    logger = get_logger()
+    # Now you can use `logger` to log messages that include trace IDs
+    logger.info("This log entry includes a trace ID.")
+
+```
+
+#### Logger with User Arguments
 ``` python
 from pytracekit import get_logger
 
 logger = get_logger(name='my_service_logger', log_file_path='logs/my_service.log', max_bytes=10*1024*1024, backup_count=5)
-
 # Now you can use `logger` to log messages that include trace IDs
-logger.info("This log entry includes a trace ID.")
+logger.info("This will push the logs into logs/my_service.log")
+
 ```
