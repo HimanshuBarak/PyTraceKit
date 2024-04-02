@@ -31,7 +31,7 @@ def get_logger(name='default_logger', log_file_path=None, max_bytes=10*1024*1024
     else:
         handler = StreamHandler()  # Defaults to stdout
 
-    formatter = TraceIdFormatter('%(asctime)s %(levelname)s TRACEID: [%(trace_id)s]: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+    formatter = TraceIdFormatter('%(asctime)s %(levelname)s TraceId:[%(trace_id)s]: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
     handler.setFormatter(formatter) # setting the log format 
     logger.addHandler(handler)  # specifying the destination of the logs 
 

@@ -1,6 +1,8 @@
 # PyTraceKit
 
-Elevate Your Distributed Tracing in Python with **PyTraceKit**, a forefront tool designed to simplify the integration of distributed tracing into Python services through the power of OpenTelemetry. This package is your gateway to enhanced application observability with a low-code, straightforward approach, enriching your logging with trace IDs and allowing detailed tracing with minimal setup.
+ **PyTraceKit**, is a low code tool designed to simplify the integration of distributed tracing into Python microservices through the power of OpenTelemetry. This package is your gateway to enhanced application observability with a low-code, straightforward approach, enriching your logging with trace IDs and allowing detailed tracing with minimal setup.
+
+ Currently along with FASTAPI , Falcon , Flask it also has support for redis and mongodb. Soon this will be extended to postgre and some popular message queues as well.
 
 ## Key Features
 
