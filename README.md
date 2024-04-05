@@ -1,8 +1,16 @@
 # PyTraceKit
 
- **PyTraceKit**, is a low code solution designed to simplify the integration of distributed tracing into Python microservices through the power of OpenTelemetry. This package provides straightforward approach to enrich your logging with trace IDs and allowing detailed tracing with minimal setup.
+**PyTraceKit**, is a low code solution designed to simplify the integration of distributed tracing into Python microservices through the power of OpenTelemetry. This package provides straightforward approach to enrich your logging with trace IDs and allowing detailed tracing with minimal setup.
 
- The package comes with inbuilt support for Falcon, FastAPI , Flask 
+The package comes with inbuilt support for Falcon, FastAPI , Flask ,redis , MongoDB
+
+## Distributed Tracing Design
+
+![Architecture Diagram](images/design.png)
+
+Pytracekit provides the funcitonality to send the trace to the trace collector. From there on you could employ a tempo , grafana as shown in the diagram or you could use a observality tool of your choice.
+
+Soon we plan to add details of how to setup otel collector ,tempo and grafana.
 
 ## Key Features
 
@@ -60,6 +68,7 @@ app = falcon.App()  # Now define your Falcon app
 PyTraceKit allows you to add tracing to specific functions using the @instrument_with_tracing decorator. You can specify a custom operation name and additional span attributes for detailed tracing:
 
 #### Simple Function Level Tracing
+
 ```python
 from pytracekit import instrument_with_tracing
 
@@ -70,6 +79,7 @@ def process_data():
 ```
 
 #### Function level tracing with custom operation name and custom span attributes
+
 ```python
 
 from pytracekit import instrument_with_tracing
@@ -96,7 +106,8 @@ To take advantage of PyTraceKit's enhanced logging capabilities, use the get_log
 ```
 
 #### Logger with User Arguments
-``` python
+
+```python
 from pytracekit import get_logger
 
 logger = get_logger(name='my_service_logger', log_file_path='logs/my_service.log', max_bytes=10*1024*1024, backup_count=5)

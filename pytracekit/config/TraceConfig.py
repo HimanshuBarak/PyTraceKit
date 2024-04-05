@@ -9,8 +9,8 @@ class TraceConfig:
 
     @property
     def tracing_endpoint(self):
-        return os.getenv(TRACING_ENDPOINT)
+        return os.getenv(TRACING_ENDPOINT,None)
 
     @property
     def trace_service_name(self):
-        return os.getenv(TRACE_SERVICE_NAME)
+        return os.getenv(TRACE_SERVICE_NAME,None)

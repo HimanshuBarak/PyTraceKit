@@ -26,7 +26,6 @@ def instrument(app=None):
     if not config.enable_tracing:
         print("Tracing is disabled.")
         return
-
     if not config.tracing_endpoint:
         raise Exception("Tracing endpoint not provided.")
 
